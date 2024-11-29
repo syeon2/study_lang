@@ -2,20 +2,26 @@ plugins {
     kotlin("jvm") version "2.0.21"
 }
 
-group = "io.syeon2"
-version = "1.0-SNAPSHOT"
+allprojects {
+    group = "io.syeon2"
+    version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+    repositories {
+        mavenCentral()
+    }
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
+subprojects {
+    apply(plugin = "org.jetbrains.kotlin.jvm")
 
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
+    dependencies {
+        testImplementation(kotlin("test"))
+    }
+
+    tasks.test {
+        useJUnitPlatform()
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
 }
